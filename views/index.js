@@ -1,10 +1,30 @@
-var addMessageWithDelay = delay(addMessage, 1500);
-var addMessageInfoWithDelay = delay(addInfoMessage, 1500);
-var addInputBoxWithDelay = delay(addInputBox, 2000)
+var flag = true;
+var hidden = true;
 
+var addMessageWithDelay1500 = delay(addMessage, 1500);
+var addMessageWithDelay2500 = delay(addMessage, 2500);
+var addMessageInfoWithDelay = delay(addInfoMessage, 3500);
+var addInputBoxWithDelay2000 = delay(addInputBox, 2000)
+var showChatWithDelay = delay(()=>{$("#chatBlock").css("bottom", "5px");hidden = false;},3000)
+
+showChatWithDelay()
 addMessage("Здравствуйте! Я юрист-консультант сайта. Чем я могу вам помочь?",1)
-addMessageWithDelay("моя консультация бесплатна, задавайте вопросы",1);
-addInputBoxWithDelay()  
+addMessageWithDelay1500("моя консультация бесплатна, задавайте вопросы",1);
+addInputBoxWithDelay2000()  
+
+$("#hide").click(function(){
+    let position = "5px";
+    if(hidden == false){
+        position = "-422px"
+        hidden = true
+    }
+    else{
+        hidden = false
+        position = "5px";
+    }
+    $("#chatBlock").css("bottom", position);
+});    
+
 
 function addMessage(message, messageType){ 
     $("<button class=\"message"+messageType+"\">"+message+"</button></br>").appendTo("#chat");
@@ -54,13 +74,13 @@ function firstAction(){
         $("#chatInput").remove()
         $("#chatSendBtn").remove()
     
-        addMessageWithDelay("Спасибо. В течение нескольких минут я подготовлю ответ на ваш вопрос",1);
-        addMessageWithDelay("Оставьте свой телефон ниже, я вам перезвоню и проконсультирую",1);
+        addMessageWithDelay1500("Спасибо. В течение нескольких минут я подготовлю ответ на ваш вопрос",1);
+        addMessageWithDelay2500("Оставьте свой телефон ниже, я вам перезвоню и проконсультирую",1);
         addMessageInfoWithDelay();
 }
 function secondAction(){
 
-    if($("#name").val() != "" && $("#phone").val() != "" && $("#time").val() != ""){
+    if($("#name").val() != "" && $("#phone").val() != "" && $("#time").val() != "" && flag == true){
     var xhr = new XMLHttpRequest();
 
     var body = 'name=' + encodeURIComponent($("#name").val()) +
@@ -73,6 +93,8 @@ function secondAction(){
     xhr.send(body);
 
     $("#infoBTN").remove()
-    addMessage("Спасибо! Мы скоро свяжемся с вами!",1)
+    addMessageWithDelay1500("Спасибо! Мы скоро свяжемся с вами!",1)
+
+    flag = false
 }
 }
