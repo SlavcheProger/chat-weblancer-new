@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>chat</title>
+    </head>
+    
+    <body>
+        <div id="chatBlock">
+            <img src="./20.jpg">
+            <table>
+                <tr><td>Надежда Ивонина</td></tr>
+                <tr><td>Дежурный юрист</td></tr>
+            </table>
+            <button id="hide">-</button>
+                <div id="chat" style="height:400px;width:350px; overflow : auto;">
+                </div>
+        </div>
+
+        <script src="./jquery-3.4.1.min.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>
+
+<style>
+#hide{
+    background-color: transparent;
+    font-size: 50px;
+    color: white;
+    border-color: transparent;
+    float: right;
+    margin-right: 20px;
+    margin-top: -20px;
+}
+table{
+    width: 150px;
+    height: 50px;
+    float:left;
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    color: white;
+}
+.inp{
+    width: 220px;
+    border-radius: 10px;
+    border-color: #e0e6d8;
+    background-color: white;  
+    margin: 8px;
+    padding: 8px;
+}
+#chatBlock{
+    width: 350px;
+    min-height: 480px;
+    max-height: 800px;
+    background-color: #348feb;
+    padding: 5px;
+    border-radius: 8px;
+}
+img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+#chat{
+    background-color: white;
+}
+#chatInput{
+    width: 280px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: #e0e6d8;
+    background-color: white;  
+    margin: 8px;
+    margin-top: 205px;
+    text-align: left;
+    padding: 8px;
+}
+#chatSendBtn{
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+    border-color: #e0e6d8;
+    background-color: #348feb;  
+    margin: 8px;
+    margin-left: -50px;
+    margin-top: 205px;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+.message1{
+    border-color: #e0e6d8;
+    background-color: #fcfeff;  
+    min-width: 280px;
+    max-width: 280px;
+    min-height: 50px;
+    border-radius: 15px;
+    text-align: left;
+    color: black;
+    padding: 8px;
+    float: left;
+    margin: 10px;
+    margin-bottom: 10px;
+}
+.message2{
+    border-color: #e0e6d8;
+    background-color: #fcfeff;  
+    min-width: 230px;
+    max-width: 280px;
+    min-height: 50px;
+    border-radius: 15px;
+    text-align: left;
+    color: black;
+    padding: 8px;
+    float: right;
+    margin: 10px;
+    margin-bottom: 0px;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #d0d8db; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #d0d8db; 
+}
+</style>
