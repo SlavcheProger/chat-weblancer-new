@@ -10,7 +10,9 @@ var showChatWithDelay = delay(()=>{
     hidden = false;
     $("#hide").html('-');
     addMessage("Здравствуйте! Я юрист-консультант сайта. Чем я могу вам помочь?",1)
+    isWriting()
     addMessageWithDelay1500("моя консультация бесплатна, задавайте вопросы",1);
+    isWriting()
     addInputBoxWithDelay2000()  
 },3000)
 
@@ -32,13 +34,30 @@ $("#hide").click(function(){
     $("#chatBlock").css("bottom", position);
 });    
 
+function isWriting(){
 
+    try{
+        $(".dots-gif").remove()
+        $(".iswritingP").remove()
+    }catch(ex){}
+        $("<center><img class=\"dots-gif\" src=\"./dots-gif.gif\"></img><p class=\"iswritingP\">Подождите, вам пишут сообщение ... </p></center>").appendTo("#chat");
+        scrollDown()
+}
 function addMessage(message, messageType){ 
+    
+$(".dots-gif").remove()
+$(".iswritingP").remove()
+
     $("<button class=\"message"+messageType+"\">"+message+"</button></br>").appendTo("#chat");
+    scrollDown()
 }
 function addInfoMessage(message, messageType){
-    
+      
+$(".dots-gif").remove()
+$(".iswritingP").remove()
+
     $("<button class=\"message1\">Укажите телефон и время когда вам удобно получить консультацию: <input class=\"inp\" id=\"phone\" placeholder=\"Номер телефона *\"><input class=\"inp\" id=\"name\" placeholder=\"Имя *\"><input class=\"inp\" id=\"time\" placeholder=\"Время для звонка *\"><button class=\"inp\" id=\"infoBTN\">Отправить</button></button></br>").appendTo("#chat");
+    scrollDown()
 
     $("#infoBTN").click(function(){
         secondAction()
@@ -63,8 +82,9 @@ function delay(f, ms) {
   
   }
 function addInputBox(){
-    $("<input id=\"chatInput\" placeholder=\"Введите ваше сообщение ...\"><button id=\"chatSendBtn\">></button>").appendTo("#chat");
 
+    $("<input id=\"chatInput\" placeholder=\"Введите ваше сообщение ...\"><button id=\"chatSendBtn\">></button>").appendTo("#chat");
+    scrollDown()
     $("#chatSendBtn").click(function(){
         if($("#chatInput").val()!= "") firstAction()
     });
@@ -76,13 +96,16 @@ function addInputBox(){
     });
 }
 function firstAction(){
-    addMessage($("#chatInput").val(), 2)
-
-        $("#chatInput").remove()
-        $("#chatSendBtn").remove()
+    let msg = $("#chatInput").val();
+    $("#chatInput").remove()
+    $("#chatSendBtn").remove()
     
+    addMessage(msg, 2)
+        isWriting()
         addMessageWithDelay1500("Спасибо. В течение нескольких минут я подготовлю ответ на ваш вопрос",1);
+        isWriting()
         addMessageWithDelay2500("Оставьте свой телефон ниже, я вам перезвоню и проконсультирую",1);
+        isWriting()
         addMessageInfoWithDelay();
 }
 function secondAction(){
@@ -100,6 +123,7 @@ function secondAction(){
     xhr.send(body);
 
     $("#infoBTN").remove()
+    isWriting()
     addMessageWithDelay1500("Спасибо! Мы скоро свяжемся с вами!",1)
 
     flag = false
@@ -119,4 +143,10 @@ function addChatForm(){
     "</div></div>";
 
     $(form).appendTo("body");
+    scrollDown()
+}
+
+function scrollDown(){
+    var div = $("#chat");
+    div.scrollTop(div.prop('scrollHeight'));
 }
