@@ -5,22 +5,29 @@ var addMessageWithDelay1500 = delay(addMessage, 1500);
 var addMessageWithDelay2500 = delay(addMessage, 2500);
 var addMessageInfoWithDelay = delay(addInfoMessage, 3500);
 var addInputBoxWithDelay2000 = delay(addInputBox, 2000)
-var showChatWithDelay = delay(()=>{$("#chatBlock").css("bottom", "5px");hidden = false;},3000)
+var showChatWithDelay = delay(()=>{
+    $("#chatBlock").css("bottom", "5px");
+    hidden = false;
+    $("#hide").html('-');
+    addMessage("Здравствуйте! Я юрист-консультант сайта. Чем я могу вам помочь?",1)
+    addMessageWithDelay1500("моя консультация бесплатна, задавайте вопросы",1);
+    addInputBoxWithDelay2000()  
+},3000)
 
+addChatForm()
 showChatWithDelay()
-addMessage("Здравствуйте! Я юрист-консультант сайта. Чем я могу вам помочь?",1)
-addMessageWithDelay1500("моя консультация бесплатна, задавайте вопросы",1);
-addInputBoxWithDelay2000()  
 
 $("#hide").click(function(){
     let position = "5px";
     if(hidden == false){
-        position = "-422px"
+        position = "-425px"
         hidden = true
+        $("#hide").html('^');
     }
     else{
         hidden = false
         position = "5px";
+        $("#hide").html('-');
     }
     $("#chatBlock").css("bottom", position);
 });    
@@ -97,4 +104,19 @@ function secondAction(){
 
     flag = false
 }
+}
+
+function addChatForm(){
+
+    let form = "<div id=\"chatBlock\">"+
+    "<img id=\"chat-img\" src=\"./20.jpg\">"+
+    "<table id=\"chattable\">"+
+    "<tr><td>Надежда Ивонина</td></tr>"+
+    "<tr><td>Дежурный юрист</td></tr>"+
+    "</table>"+
+    "<button id=\"hide\">^</button>"+
+    "<div id=\"chat\" style=\"height:400px;width:350px; overflow : auto;\">"+
+    "</div></div>";
+
+    $(form).appendTo("body");
 }
